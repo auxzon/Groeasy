@@ -88,7 +88,8 @@ class ProductDetalsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Textwithfont(
                       text: "Fruit mix pack",
@@ -223,8 +224,10 @@ class ProductDetalsScreen extends StatelessWidget {
                                         Navi.back();
                                       },
                                       color: ColorData.maincolor,
-                                      child: const Textwithfont(
+                                      child: Textwithfont(
                                         text: "Submit",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: Fontsize.Fontsizemedium,
                                         color: ColorData.whitecolor,
                                       ),
                                     ),
@@ -299,38 +302,51 @@ class ProductDetalsScreen extends StatelessWidget {
                     BorderRadius.circular(Borderradius.buttonborderradius),
                 color: ColorData.shadecolor,
                 onPressed: () {},
-                child: const Row(mainAxisSize: MainAxisSize.min,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(CupertinoIcons.cart,color: ColorData.seconderycolor,),
+                    Icon(
+                      CupertinoIcons.cart,
+                      color: ColorData.seconderycolor,
+                    ),
                     Textwithfont(
                       text: "Add to Cart",
                       color: ColorData.seconderycolor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: Fontsize.Fontsizemedium,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(width: MyApp.width * .04),
+            Expanded(
+              child: CommonMaterialButton(
+                onPressed: () {
+                  Navi.to(ChooseAddressScreen(
+                    screen: ProductDetalsScreen(),
+                  ));
+                },
+                borderRadius:
+                    BorderRadius.circular(Borderradius.buttonborderradius),
+                color: ColorData.maincolor,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.shopping_bag_rounded,
+                      color: ColorData.whitecolor,
+                    ),
+                    Textwithfont(
+                      text: "Order Now",
+                      color: ColorData.whitecolor,
+                      fontSize: Fontsize.Fontsizemedium,
                       fontWeight: FontWeight.bold,
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(width: MyApp.width*.04),
-            Expanded(
-              child: CommonMaterialButton(
-                onPressed: () {
-                  Navi.to(ChooseAddressScreen(screen: ProductDetalsScreen(),));
-                },
-    borderRadius:
-    BorderRadius.circular(Borderradius.buttonborderradius),
-    color: ColorData.maincolor,
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.shopping_bag_rounded,color: ColorData.whitecolor,),
-                    Textwithfont(text: "Order Now"  ,
-                        color: ColorData.whitecolor,
-                        fontWeight: FontWeight.bold,),
-                  ],
-                ),
-                ),
-              ),
           ],
         ),
       ),

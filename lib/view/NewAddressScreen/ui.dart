@@ -73,10 +73,11 @@ class AddNewAddressScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(
                           (MyApp.width * .007) * (MyApp.width * .007)),
                       onPressed: () {},
-                      child: const Textwithfont(
+                      child: Textwithfont(
                         text: 'Save the address',
                         color: ColorData.whitecolor,
                         fontWeight: FontWeight.bold,
+                        fontSize: Fontsize.Fontsizemedium,
                       ),
                     ),
                   ),

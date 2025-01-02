@@ -180,8 +180,9 @@ class OrderScreen extends StatelessWidget {
                                   width: MyApp.width * .3,
                                   child: Textwithfont(
                                     text: "Track",
+                                    fontWeight: FontWeight.bold,
                                     color: ColorData.whitecolor,
-                                    fontSize: Fontsize.Fontsizelarge,
+                                    fontSize: Fontsize.Fontsizemedium,
                                   ),
                                 ),
                               ),
@@ -202,8 +203,9 @@ class OrderScreen extends StatelessWidget {
                                   width: MyApp.width * .3,
                                   child: Textwithfont(
                                     text: "Cancel",
+                                    fontWeight: FontWeight.bold,
                                     color: ColorData.maincolor,
-                                    fontSize: Fontsize.Fontsizelarge,
+                                    fontSize: Fontsize.Fontsizemedium,
                                   ),
                                 ),
                               ),
@@ -336,8 +338,9 @@ class OrderScreen extends StatelessWidget {
                                         width: MyApp.width * .3,
                                         child: Textwithfont(
                                           text: "Rate",
+                                          fontWeight: FontWeight.bold,
                                           color: index.isEven?ColorData.maincolor:ColorData.maincolor.withOpacity(.5),
-                                          fontSize: Fontsize.Fontsizelarge,
+                                          fontSize: Fontsize.Fontsizemedium,
                                         ),
                                       ),
                                     ),
@@ -359,8 +362,9 @@ class OrderScreen extends StatelessWidget {
                                         width: MyApp.width * .3,
                                         child: Textwithfont(
                                           text: "Reorder",
+                                          fontWeight: FontWeight.bold,
                                           color: ColorData.maincolor,
-                                          fontSize: Fontsize.Fontsizelarge,
+                                          fontSize: Fontsize.Fontsizemedium,
                                         ),
                                       ),
                                     ),

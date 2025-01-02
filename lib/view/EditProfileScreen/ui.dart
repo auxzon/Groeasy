@@ -108,10 +108,11 @@ class EditProfileScreen extends StatelessWidget {
               borderRadius:
                   BorderRadius.circular(Borderradius.buttonborderradius),
               onPressed: () {},
-              child: const Textwithfont(
+              child: Textwithfont(
                 text: "Save Changes",
                 color: ColorData.whitecolor,
                 fontWeight: FontWeight.bold,
+                fontSize: Fontsize.Fontsizemedium,
               ),
             )
             // const Textwithfont(

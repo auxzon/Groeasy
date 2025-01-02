@@ -96,7 +96,7 @@ class CartScreen extends StatelessWidget {
                   },
                   child: Textwithfont(
                     text: "Go to checkout",
-                      fontSize: MyApp.height * 0.02,
+                    fontSize: Fontsize.Fontsizemedium,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),

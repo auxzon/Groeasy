@@ -50,12 +50,14 @@ class CustomerSupport extends StatelessWidget {
               onPressed: () {
                 launchUrl(Uri.parse("tel:+918606580635"));
               },
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Textwithfont(
+                    fontWeight: FontWeight.bold,
                     text: "Call Support",
                     color: ColorData.whitecolor,
+                    fontSize: Fontsize.Fontsizemedium,
                   ),
                   Icon(
                     Icons.phone,
@@ -92,12 +94,14 @@ class CustomerSupport extends StatelessWidget {
                   throw Exception("not able to load $emailUri");
                 }
               },
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Textwithfont(
                     text: "Email Support",
                     color: ColorData.whitecolor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: Fontsize.Fontsizemedium,
                   ),
                   Icon(
                     Icons.mail,

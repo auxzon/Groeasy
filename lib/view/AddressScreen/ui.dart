@@ -105,9 +105,22 @@ class ChooseAddressScreen extends StatelessWidget {
                           builder: (context) => AddNewAddressScreen()),
                     );
                   },
-                  child: const Textwithfont(
+                  child: Textwithfont(
                     text: 'Add new address',
+                    fontWeight: FontWeight.bold,
                     color: ColorData.whitecolor,
+                    fontSize: Fontsize.Fontsizemedium,
+                  ),
+                ),
+                SizedBox(height: MyApp.height * .02),
+                CommonMaterialButton(
+                  borderRadius:
+                      BorderRadius.circular(Borderradius.buttonborderradius),
+                  onPressed: () {},
+                  child: Textwithfont(
+                    text: "Current Location",
+                    fontSize: Fontsize.Fontsizemedium,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(height: MyApp.height * .02),
@@ -146,10 +159,10 @@ class ChooseAddressScreen extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Borderradius.containerborderradius),
-                topRight: Radius.circular(Borderradius.containerborderradius),
-              ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Borderradius.containerborderradius),
+                  topRight: Radius.circular(Borderradius.containerborderradius),
+                ),
                 color: ColorData.whitecolor,
                 boxShadow: const [
                   BoxShadow(
@@ -229,6 +242,7 @@ class ChooseAddressScreen extends StatelessWidget {
                           ? "Complete COD Payment"
                           : 'Proceed to payment',
                       color: ColorData.whitecolor,
+                      fontSize: Fontsize.Fontsizemedium,
                     ),
                   ),
                 )
