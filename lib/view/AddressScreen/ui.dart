@@ -154,7 +154,7 @@ class ChooseAddressScreen extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                       blurRadius: 2,
-                      offset: Offset(1, 0),
+                      offset: Offset(2, 0),
                       color: ColorData.shadecolor)
                 ]),
             padding: EdgeInsets.symmetric(
