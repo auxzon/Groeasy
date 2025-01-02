@@ -151,7 +151,7 @@ class ChooseAddressScreen extends StatelessWidget {
                 topRight: Radius.circular(Borderradius.containerborderradius),
               ),
                 color: ColorData.whitecolor,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       blurRadius: 2,
                       offset: Offset(2, 0),

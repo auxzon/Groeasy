@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 class TaskCompleteScreenController extends GetxController{
   Returnbackfun()async{
   await Future.delayed(Duration(seconds: 3,),() {
-      Navi.to(BottomNavigator(index: 0));
+      Navi.offAll(BottomNavigator(index: 0));
+      Get.delete<TaskCompleteScreenController>();
     },);
   }
   @override
