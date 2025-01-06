@@ -15,38 +15,37 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Commonscaffold(
-      canPop: false,
-      useSafeArea: true,
-      appBar: AppBar(
-       forceMaterialTransparency: true,
-        automaticallyImplyLeading: true,
-        title: Text(
-          "Cart",
-          style: TextStyle(
-            color: ColorData.seconderycolor,
-            fontWeight: FontWeight.bold,
-            fontSize: Fontsize.Fontsizelargeex,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: MyApp.width * 0.04),
-            child: Center(
-              child: Text(
-                "Done",
-                style: TextStyle(
-                  color: ColorData.greebuttoncolor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: MyApp.height * 0.02,
-                ),
+    return Container(
+      color: ColorData.whitecolor,
+      child:  Column(
+        children: [
+          AppBar(
+            forceMaterialTransparency: true,
+            automaticallyImplyLeading: true,
+            title: Text(
+              "Cart",
+              style: TextStyle(
+                color: ColorData.seconderycolor,
+                fontWeight: FontWeight.bold,
+                fontSize: Fontsize.Fontsizelargeex,
               ),
             ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.only(right: MyApp.width * 0.04),
+                child: Center(
+                  child: Text(
+                    "Done",
+                    style: TextStyle(
+                      color: ColorData.greebuttoncolor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: MyApp.height * 0.02,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: Column(
-        children: [
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: MyApp.width * 0.04),

@@ -2,12 +2,14 @@ import 'package:auxzonfoodapp/common/Navigation/navigation.dart';
 import 'package:auxzonfoodapp/common/commonscaffold/commonScaffold.dart';
 import 'package:auxzonfoodapp/common/text/textdata.dart';
 import 'package:auxzonfoodapp/common/utils/fontsize/fontsize.dart';
+import 'package:auxzonfoodapp/controller/Subscriptionplan/SubscriptionplanController.dart';
 import 'package:auxzonfoodapp/main.dart';
 import 'package:auxzonfoodapp/view/BottomSheet/BottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tap_to_expand/tap_to_expand.dart';
 import '../../common/elevted_button/ElevatedButton.dart';
+import '../../common/utils/BorderRadius/borderradius.dart';
 import '../../common/utils/Color/Colordata.dart';
 
 class SubscriptionPlan extends StatelessWidget {
@@ -15,6 +17,7 @@ class SubscriptionPlan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SubscriptionplanController subscriptionplanController = Get.put(SubscriptionplanController());
     return DefaultTabController(
       length: 2,
       child: Commonscaffold(
@@ -86,17 +89,17 @@ class SubscriptionPlan extends StatelessWidget {
                       horizontal: MyApp.width * .02,
                       vertical: MyApp.height * .01,
                     ),
-                    itemBuilder: (context, index) =>  TapToExpand(
-                      iconColor: ColorData.shadecolor,
+                    itemBuilder: (context, index) => TapToExpand(
+                        iconColor: ColorData.shadecolor,
                         backgroundcolor: ColorData.whitecolor,
-                        title:Textwithfont(
-                      text: "Rs. 100.00",
-                      fontSize: Fontsize.Fontsizelargeex,
-                      color: ColorData.seconderycolor,
-                      fontWeight: FontWeight.bold,
-                      maxliness: 1,
-                      textoverflow: TextOverflow.ellipsis,
-                    ),
+                        title: Textwithfont(
+                          text: "Rs. 100.00",
+                          fontSize: Fontsize.Fontsizelargeex,
+                          color: ColorData.seconderycolor,
+                          fontWeight: FontWeight.bold,
+                          maxliness: 1,
+                          textoverflow: TextOverflow.ellipsis,
+                        ),
                         content: Column(
                           children: [
                             Divider(),
@@ -136,8 +139,8 @@ class SubscriptionPlan extends StatelessWidget {
                     itemBuilder: (context, index) => TapToExpand(
                         iconColor: ColorData.shadecolor,
                         backgroundcolor: ColorData.whitecolor,
-                        title:Textwithfont(
-                          text: "Rs. ${index+1}00.00",
+                        title: Textwithfont(
+                          text: "Rs. ${index + 1}00.00",
                           fontSize: Fontsize.Fontsizelargeex,
                           color: ColorData.seconderycolor,
                           fontWeight: FontWeight.bold,
@@ -161,13 +164,80 @@ class SubscriptionPlan extends StatelessWidget {
                               textoverflow: TextOverflow.ellipsis,
                             ),
                             Textwithfont(
-                              text: "${index+4}0 days.",
+                              text: "${index + 4}0 days.",
                               fontSize: Fontsize.Fontsizemedium,
                               color: ColorData.maincolor,
                               fontWeight: FontWeight.bold,
                               maxliness: 1,
                               textoverflow: TextOverflow.ellipsis,
                             ),
+                            CommonMaterialButton(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: MyApp.width * .1),
+                              borderRadius: BorderRadius.circular(
+                                  (MyApp.width * .007) * (MyApp.width * .007)),
+                              color: ColorData.maincolor,
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  backgroundColor: ColorData.whitecolor,
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (context) => Container(
+                                    width: MyApp.width,
+                                    height: MyApp.height * .3,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: MyApp.width * .08,
+                                        vertical: MyApp.height * .02),
+                                    child: Column(
+                                      crossAxisAlignment:CrossAxisAlignment.start,
+                                      children: [
+                                        Textwithfont(
+                                          text: "Subscription Plan Details",
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: Fontsize.Fontsizelarge,
+                                          color: ColorData.seconderycolor,
+                                        ),
+                                        SizedBox(height: MyApp.height * 0.02),
+                                        Textwithfont(
+                                          text: "Plan: Rs. ${index + 1}00.00",
+                                          fontSize: Fontsize.Fontsizemedium,
+                                          color: ColorData.shadecolor,
+                                        ),
+                                        Textwithfont(
+                                          text: "Duration: ${index + 4}0 days",
+                                          fontSize: Fontsize.Fontsizemedium,
+                                          color: ColorData.shadecolor,
+                                        ),
+                                        SizedBox(height: MyApp.height * 0.02),
+                                        CommonMaterialButton(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: MyApp.width * .1),
+                                          borderRadius: BorderRadius.circular(
+                                              (MyApp.width * .007) *
+                                                  (MyApp.width * .007)),
+                                          color: ColorData.maincolor,
+                                          onPressed: () {
+                                            subscriptionplanController.startTransaction(context);
+                                          },
+                                          child: Textwithfont(
+                                            text: "Subscribe",
+                                            fontWeight: FontWeight.bold,
+                                            color: ColorData.whitecolor,
+                                            fontSize: Fontsize.Fontsizemedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Textwithfont(
+                                text: "Get Plan",
+                                fontWeight: FontWeight.bold,
+                                color: ColorData.whitecolor,
+                                fontSize: Fontsize.Fontsizemedium,
+                              ),
+                            )
                           ],
                         )),
                     separatorBuilder: (context, index) => SizedBox(

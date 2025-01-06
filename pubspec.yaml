@@ -52,6 +52,7 @@ dependencies:
   url_launcher: ^6.3.1
   flutter_rating_stars: ^1.1.0
   tap_to_expand: ^0.7.2
+  connectivity_plus: ^6.1.1
 
 dev_dependencies:
   flutter_test:

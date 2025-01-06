@@ -20,28 +20,29 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Commonscaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        automaticallyImplyLeading: false,
-        title: Textwithfont(
-          text: 'Profile',
-          fontWeight: FontWeight.bold,
-          fontSize: Fontsize.Fontsizelargeex,
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              // Handle logout functionality
-            },
-          ),
-        ],
-      ),
-      body: ListView(
+    return Container(
+      color: ColorData.whitecolor,
+      child: ListView(
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: MyApp.width * .02),
         children: [
+          AppBar(
+            forceMaterialTransparency: true,
+            automaticallyImplyLeading: false,
+            title: Textwithfont(
+              text: 'Profile',
+              fontWeight: FontWeight.bold,
+              fontSize: Fontsize.Fontsizelargeex,
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.logout),
+                onPressed: () {
+                  // Handle logout functionality
+                },
+              ),
+            ],
+          ),
           // User Info Section
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -68,40 +69,84 @@ class ProfileScreen extends StatelessWidget {
 
           // Account Section
           _buildSectionHeader('Account'),
-          _buildMenuItem(Icons.person, 'Personal information', context,onTap: () {
-            Navi.to(PersonalInfoScreen());
-          },),
-          _buildMenuItem(Icons.shopping_bag, 'Your orders', context,onTap: () {
-            Navi.to(OrderScreen());
-          },),
-          _buildMenuItem(Icons.favorite, 'Favorites', context,onTap: () {
-            Navi.to(const FavourateScreen());
-          },),
-          _buildMenuItem(Icons.location_on, 'Saved addresses', context,onTap: () {
-            Navi.to(ChooseAddressScreen(index: 3,));
-          },),
+          _buildMenuItem(
+            Icons.person,
+            'Personal information',
+            context,
+            onTap: () {
+              Navi.to(PersonalInfoScreen());
+            },
+          ),
+          _buildMenuItem(
+            Icons.shopping_bag,
+            'Your orders',
+            context,
+            onTap: () {
+              Navi.to(OrderScreen());
+            },
+          ),
+          _buildMenuItem(
+            Icons.favorite,
+            'Favorites',
+            context,
+            onTap: () {
+              Navi.to(const FavourateScreen());
+            },
+          ),
+          _buildMenuItem(
+            Icons.location_on,
+            'Saved addresses',
+            context,
+            onTap: () {
+              Navi.to(ChooseAddressScreen(
+                index: 3,
+              ));
+            },
+          ),
 
           const SizedBox(height: 20),
 
           // Settings Section
           _buildSectionHeader('Settings'),
-          _buildMenuItem(Icons.notifications, 'Notifications', context,onTap: () {
-            Navi.to(NotificationScreen(screen: 3,));
-          },),
-          _buildMenuItem(Icons.support_agent, 'Customer support', context,onTap: () {
-            Navi.to(CustomerSupport());
-          },),
-          _buildMenuItem(Icons.privacy_tip, 'Privacy policy', context,onTap: () {
-            Navi.to(PrivacyPolicyScreen());
-          },),
+          _buildMenuItem(
+            Icons.notifications,
+            'Notifications',
+            context,
+            onTap: () {
+              Navi.to(NotificationScreen(
+                screen: 3,
+              ));
+            },
+          ),
+          _buildMenuItem(
+            Icons.support_agent,
+            'Customer support',
+            context,
+            onTap: () {
+              Navi.to(CustomerSupport());
+            },
+          ),
+          _buildMenuItem(
+            Icons.privacy_tip,
+            'Privacy policy',
+            context,
+            onTap: () {
+              Navi.to(PrivacyPolicyScreen());
+            },
+          ),
 
           const SizedBox(height: 20),
 
           // Subscription Section
           _buildSectionHeader('Subscription "YumMeal Premier"'),
-          _buildMenuItem(Icons.pie_chart_outline_sharp, 'View details', context,onTap: () {
-            Navi.to(SubscriptionPlan());
-          },),
+          _buildMenuItem(
+            Icons.pie_chart_outline_sharp,
+            'View details',
+            context,
+            onTap: () {
+              Navi.to(SubscriptionPlan());
+            },
+          ),
         ],
       ),
     );
@@ -112,9 +157,9 @@ class ProfileScreen extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: ColorData.maincolorDark,
-        borderRadius: BorderRadius.circular((MyApp.width*.007)*(MyApp.width*.007))
-      ),
+          color: ColorData.maincolorDark,
+          borderRadius: BorderRadius.circular(
+              (MyApp.width * .007) * (MyApp.width * .007))),
       child: Textwithfont(
         text: title,
         color: Colors.white,
@@ -125,11 +170,11 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildMenuItem(
-      IconData icon,
-      String title,
-      BuildContext context, {
-        VoidCallback? onTap,
-      }) {
+    IconData icon,
+    String title,
+    BuildContext context, {
+    VoidCallback? onTap,
+  }) {
     return ListTile(
       leading: Icon(icon, color: ColorData.maincolor),
       title: Textwithfont(text: title),

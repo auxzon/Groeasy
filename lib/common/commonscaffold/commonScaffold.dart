@@ -1,5 +1,12 @@
+import 'package:auxzonfoodapp/common/text/textdata.dart';
+import 'package:auxzonfoodapp/common/utils/Color/Colordata.dart';
+import 'package:auxzonfoodapp/main.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
+import '../../controller/CommonScaffold/CommonScaffoldController.dart';
 
 class Commonscaffold extends StatelessWidget {
   final Widget? body;
@@ -25,7 +32,7 @@ class Commonscaffold extends StatelessWidget {
   final String? restorationId;
   final bool useSafeArea;
 
-  const Commonscaffold({
+  Commonscaffold({
     super.key,
     this.body,
     this.appBar,
@@ -48,19 +55,48 @@ class Commonscaffold extends StatelessWidget {
     this.canPop = false,
     this.canPopfun,
     this.restorationId,
-    this.useSafeArea = false, // Default is false
+    this.useSafeArea = false,
   });
+
+  final connectivityController = Get.put(ConnectivityController());
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: canPop,
-      onPopInvokedWithResult: canPopfun,
-      child: Scaffold(
+    return Obx(() {
+      return Scaffold(
         appBar: appBar,
-        body: useSafeArea
+        body: connectivityController.isConnected.value
+            ? (useSafeArea
             ? SafeArea(child: body ?? const SizedBox())
-            : body,
+            : body ?? const SizedBox())
+            : Container(
+          height: MyApp.height,
+          width: MyApp.width,
+          decoration: const BoxDecoration(
+            color: ColorData.whitecolor,
+            image: DecorationImage(
+              fit: BoxFit.contain,
+              image: AssetImage("images3/No connection-bro.png"),
+            ),
+          ),
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              SizedBox(height: MyApp.height*.04,),
+              Container(
+                height: MyApp.height * .1,
+                width: MyApp.height * .1,
+                decoration: const BoxDecoration(
+                  color: ColorData.whitecolor,
+                    image: DecorationImage(fit: BoxFit.cover,
+                        image: AssetImage("images3/image1.png"))),
+              ),
+              const Spacer(),
+              const Textwithfont(text: "No Connection",fontWeight: FontWeight.bold,color: ColorData.cancelbuttoncolor,fontSize: 25,),
+              SizedBox(height: MyApp.height*.02,)
+            ],
+          ),
+        ),
         floatingActionButton: floatingActionButton,
         floatingActionButtonLocation: floatingActionButtonLocation,
         floatingActionButtonAnimator: floatingActionButtonAnimator,
@@ -78,7 +114,9 @@ class Commonscaffold extends StatelessWidget {
         drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
         endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
         restorationId: restorationId,
-      ),
-    );
+      );
+    });
   }
 }
+
+

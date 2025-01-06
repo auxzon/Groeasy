@@ -35,8 +35,10 @@ class ChooseAddressScreen extends StatelessWidget {
             onPressed: () {
               if (index == null) {
                 Navi.to(screen!);
+                Get.delete<AddressScreenController>();
               } else {
                 Get.delete<BottomNavigationBarController>();
+                Get.delete<AddressScreenController>();
                 Navi.to(BottomNavigator(index: index ?? 0),
                     transition: Transition.leftToRightWithFade);
               }
@@ -113,14 +115,47 @@ class ChooseAddressScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: MyApp.height * .02),
+                Obx(
+                  () => addressScreenController.currentLocation.isEmpty
+                      ? const Textwithfont(text: "loading")
+                      : Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: MyApp.height * .02,
+                            horizontal: MyApp.width * .1,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                                (MyApp.width * .007) * (MyApp.width * .007)),
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: const Offset(0, 1),
+                                  blurRadius: 2,
+                                  color:
+                                      ColorData.seconderycolor.withOpacity(.5))
+                            ],
+                            color: ColorData.whitecolor,
+                          ),
+                          child: Center(
+                            child: Textwithfont(
+                                text:
+                                    addressScreenController.currentLocation.value),
+                          ),
+                        ),
+                ),
+                SizedBox(height: MyApp.height * .02),
                 CommonMaterialButton(
-                  borderRadius:
-                      BorderRadius.circular(Borderradius.buttonborderradius),
-                  onPressed: () {},
+                  padding: EdgeInsets.symmetric(horizontal: MyApp.width * .1),
+                  borderRadius: BorderRadius.circular(
+                      (MyApp.width * .007) * (MyApp.width * .007)),
+                  color: ColorData.maincolor,
+                  onPressed: () {
+                    addressScreenController.fetchCurrentLocation();
+                  },
                   child: Textwithfont(
                     text: "Current Location",
-                    fontSize: Fontsize.Fontsizemedium,
                     fontWeight: FontWeight.bold,
+                    color: ColorData.whitecolor,
+                    fontSize: Fontsize.Fontsizemedium,
                   ),
                 ),
                 SizedBox(height: MyApp.height * .02),
@@ -235,7 +270,10 @@ class ChooseAddressScreen extends StatelessWidget {
                               index: index,
                               screen: screen,
                               rate: 1.2,
-                            ));
+                              productName: "productName",
+                              noOfProducts: 2,
+                              deliveryAddress:
+                                  "Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Kochi-560016"));
                     },
                     child: Textwithfont(
                       text: addressScreenController.codpayment.value

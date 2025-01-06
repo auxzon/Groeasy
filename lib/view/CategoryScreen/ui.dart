@@ -17,20 +17,20 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Commonscaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        forceMaterialTransparency: true,
-        title: Textwithfont(
-          text: "Category",
-          fontSize: Fontsize.Fontsizelargeex,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      canPop: false,
-      body: Column(
+    return Container(
+      color: ColorData.whitecolor,
+      child: Column(
         children: [
+          AppBar(
+            centerTitle: true,
+            automaticallyImplyLeading: false,
+            forceMaterialTransparency: true,
+            title: Textwithfont(
+              text: "Category",
+              fontSize: Fontsize.Fontsizelargeex,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           // Search Bar
           Padding(
             padding: const EdgeInsets.all(16.0),

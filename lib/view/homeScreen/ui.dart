@@ -21,10 +21,137 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Commonscaffold(
-      canPop: false,
-      useSafeArea: true,
-      body: Center(
+    List images = [
+      "https://img.freepik.com/free-photo/raw-meat-table_23-2150857912.jpg?t=st=1735558226~exp=1735561826~hmac=6240bc8c2fff05ba5882b276c6a379d1f518696c7955a2af8c61b3eb431f2975&w=1380",
+      "https://images.unsplash.com/photo-1650265929240-fbf163e0d003?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://media.istockphoto.com/id/878447520/photo/vet-with-dog-and-cat.jpg?s=2048x2048&w=is&k=20&c=qaGz_6S8JtzHpamFne3LI1SiyS4I3LPxJ1B9pWeiIv4=",
+      "https://images.unsplash.com/photo-1699303480277-ddcd4f05aacd?q=80&w=1990&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1671379041175-782d15092945?q=80&w=2040&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1661892402083-4a4a0adcc44a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ];
+    List Categories = [
+      "Meat Products",
+      "Dairy products",
+      "veterinary",
+      "Vegetables",
+      "Fruits",
+      "Fish Products",
+    ];
+
+    const List<String> groceries = [
+      "Apples",
+      "Bananas",
+      "Oranges",
+      "Grapes",
+      "Mangoes",
+      "Strawberries",
+      "Potatoes",
+      "Tomatoes",
+      "Onions",
+      "Carrots",
+      "Spinach",
+      "Broccoli",
+      "Cheese",
+      "Butter",
+      "Yogurt",
+      "Chicken",
+      "Beef",
+      "Pork",
+      "Salmon",
+      "Shrimp",
+      "Bread",
+      "Croissants",
+      "Bagels",
+      "Cookies",
+      "Muffins",
+      "Tea",
+      "Coffee",
+      // "Juice",
+      // "Soft",
+      // "Drinks",
+      // "Water",
+      // "Chips",
+      // "Nuts",
+      // "Chocolate",
+      // "Bars",
+      // "Popcorn",
+      // "Pretzels",
+      // "Rice",
+      // "Pasta",
+      // "Flour",
+      // "Sugar",
+      // "Cooking Oil",
+      // "Salt",
+      // "Pepper",
+      // "Turmeric",
+      // "Ketchup",
+      // "Mustard",
+      // "Soy Sauce",
+      // "Frozen Peas",
+      // "Ice Cream",
+      // "Pizza",
+      // "Frozen Berries",
+      // "French Fries",
+    ];
+    const List<String> groceriesimg = [
+      "https://plus.unsplash.com/premium_photo-1674262321087-bfcd8135fdc5?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1667926862695-629f15968976?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1514936477380-5ea603b9a1ca?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1692813664205-d567a6829a10?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1674382739389-338645e7dd8c?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1689344314069-b60bf06d564c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1635774855536-9728f2610245?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1509963906410-fceef97f22f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1638402268441-9368026c1d45?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1553455860-2fa544e14141?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1701967601570-bbceb68fc341?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1691939610705-53fdc13289c0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1700440539073-c769891a9e3f?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1571212515416-fef01fc43637?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1604503468506-a8da13d82791?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1668616814977-05202080759c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1690983321750-ad6f6d59a84b?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1675870792392-116a80bd7ad6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1548587468-971ebe4c8c3b?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1533782654613-826a072dd6f3?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1643049439996-5a3dd331d584?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1670895802275-ed748ced4309?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1505253556788-d1b08ba92767?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1661594835845-7035de5abb30?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      // "Juice",
+      // "Soft",
+      // "Drinks",
+      // "Water",
+      // "Chips",
+      // "Nuts",
+      // "Chocolate",
+      // "Bars",
+      // "Popcorn",
+      // "Pretzels",
+      // "Rice",
+      // "Pasta",
+      // "Flour",
+      // "Sugar",
+      // "Cooking Oil",
+      // "Salt",
+      // "Pepper",
+      // "Turmeric",
+      // "Ketchup",
+      // "Mustard",
+      // "Soy Sauce",
+      // "Frozen Peas",
+      // "Ice Cream",
+      // "Pizza",
+      // "Frozen Berries",
+      // "French Fries",
+    ];
+
+    return Container(
+      color: ColorData.whitecolor,
+      child: Center(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: MyApp.width * .02),
           physics: const BouncingScrollPhysics(),
@@ -153,19 +280,19 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: MyApp.height * .02,
-            ),
-            SizedBox(
               height: MyApp.height * .18,
               width: MyApp.width,
               // color: Colors.red,
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: 10,
+                itemCount: images.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
-                    Navi.to(PopularSeeAll(title:'Meat Products',index: 0,));
+                    Navi.to(PopularSeeAll(
+                      title: Categories[index],
+                      index: 0,
+                    ));
                   },
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -180,15 +307,15 @@ class HomeScreen extends StatelessWidget {
                           // color: Colors.green,
                           borderRadius: BorderRadius.circular(
                               Borderradius.containerborderradius),
-                          image: const DecorationImage(
+                          image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: CachedNetworkImageProvider(
-                                  "https://img.freepik.com/free-photo/raw-meat-table_23-2150857912.jpg?t=st=1735558226~exp=1735561826~hmac=6240bc8c2fff05ba5882b276c6a379d1f518696c7955a2af8c61b3eb431f2975&w=1380"))),
-                      child: const Align(
+                              image:
+                                  CachedNetworkImageProvider(images[index]))),
+                      child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Textwithfont(
                           textAlign: TextAlign.center,
-                          text: "Meat Products",
+                          text: Categories[index],
                           fontWeight: FontWeight.bold,
                           color: ColorData.whitecolor,
                           maxliness: 2,
@@ -209,8 +336,9 @@ class HomeScreen extends StatelessWidget {
               decoration: BoxDecoration(
                   image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                          "https://img.freepik.com/free-vector/grocery-store-sale-banner-template_23-2151089846.jpg?t=st=1735554013~exp=1735557613~hmac=6a45fd96e235470b1f68ebb3813f2126a486cde1d3f0be145db0e2de7e618c89&w=1800")),
+                      image:AssetImage("images3/banner.png"),),
+                      // CachedNetworkImageProvider(
+                      //     "https://img.freepik.com/free-vector/grocery-store-sale-banner-template_23-2151089846.jpg?t=st=1735554013~exp=1735557613~hmac=6a45fd96e235470b1f68ebb3813f2126a486cde1d3f0be145db0e2de7e618c89&w=1800")),
                   // color: Colors.red,
                   borderRadius: BorderRadius.circular(MyApp.height * .005)),
             ),
@@ -227,7 +355,10 @@ class HomeScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navi.to(PopularSeeAll(title:"Popular Groceries",index: 0,));
+                    Navi.to(PopularSeeAll(
+                      title: "Popular Groceries",
+                      index: 0,
+                    ));
                   },
                   child: Textwithfont(
                     text: "See All",
@@ -241,6 +372,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: MyApp.height * .02,
             ),
+
             /// filter button
             Container(
               width: MyApp.width,
@@ -268,6 +400,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: MyApp.height * .02,
             ),
+
             ///grid category
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -294,7 +427,7 @@ class HomeScreen extends StatelessWidget {
                         BoxShadow(
                             color: ColorData.seconderycolor.withOpacity(.4),
                             blurRadius: 5,
-                            offset: Offset(0, 1))
+                            offset: const Offset(0, 1))
                       ]),
                   child: Stack(
                     children: [
@@ -322,8 +455,7 @@ class HomeScreen extends StatelessWidget {
                                 topRight: Radius.circular(MyApp.height * 0.009),
                               ),
                               child: CachedNetworkImage(
-                                imageUrl:
-                                    "https://plus.unsplash.com/premium_photo-1664302148512-ddea30cd2a92?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                imageUrl:groceriesimg[index],
                                 height: MyApp.height * 0.2,
                                 width: MyApp.width,
                                 fit: BoxFit.cover,
@@ -337,7 +469,7 @@ class HomeScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Textwithfont(
-                                  text: 'Rose Gardenc',
+                                  text: groceries[index],
                                   maxliness: 1,
                                   textoverflow: TextOverflow.ellipsis,
                                   fontSize: MyApp.height * 0.018,

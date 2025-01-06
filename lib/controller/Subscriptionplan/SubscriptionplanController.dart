@@ -1,15 +1,14 @@
-import 'package:auxzonfoodapp/controller/Bottmnavigation/BottomNavgationBarController.dart';
-import 'package:auxzonfoodapp/view/BottomSheet/BottomSheet.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
+import 'package:auxzonfoodapp/common/Navigation/navigation.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:phonepe_payment_sdk/phonepe_payment_sdk.dart';
-
-import '../../common/Navigation/navigation.dart';
+import '../../view/BottomSheet/BottomSheet.dart';
 import '../AddressScreen/AddressScreenController.dart';
 
-class PaymentController extends GetxController {
+
+class SubscriptionplanController extends GetxController{
   String environmentValue = "SANDBOX";
   String appId = "";
   String merchantId = "PGTESTPAYUAT86";
@@ -67,9 +66,6 @@ class PaymentController extends GetxController {
 
         if (status.value == 'SUCCESS') {
           result.value = "Payment Successful!";
-          Get.delete<PaymentController>();
-          Get.delete<BottomNavigationBarController>();
-          Get.delete<AddressScreenController>();
           Navi.to(BottomNavigator(index: 0),
               transition: Transition.leftToRightWithFade);
         } else {
