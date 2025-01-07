@@ -6,6 +6,7 @@ import 'package:auxzonfoodapp/common/text/textdata.dart';
 import 'package:auxzonfoodapp/common/utils/BorderRadius/borderradius.dart';
 import 'package:auxzonfoodapp/common/utils/Color/Colordata.dart';
 import 'package:auxzonfoodapp/common/utils/fontsize/fontsize.dart';
+import 'package:auxzonfoodapp/controller/Bottmnavigation/BottomNavgationBarController.dart';
 import 'package:auxzonfoodapp/controller/ProductDetails/productdetailscontroller.dart';
 import 'package:auxzonfoodapp/main.dart';
 import 'package:auxzonfoodapp/view/BottomSheet/BottomSheet.dart';
@@ -18,7 +19,10 @@ import 'package:get/get.dart';
 import '../AddressScreen/ui.dart';
 
 class ProductDetalsScreen extends StatelessWidget {
-  const ProductDetalsScreen({super.key});
+  const ProductDetalsScreen({super.key, required this.image, required this.text});
+
+  final String image;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +39,10 @@ class ProductDetalsScreen extends StatelessWidget {
                 Container(
                   height: MyApp.height * .25,
                   width: MyApp.width,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                              "https://plus.unsplash.com/premium_photo-1664302148512-ddea30cd2a92?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"))),
+                          image: CachedNetworkImageProvider(image))),
                 ),
                 Positioned(
                   top: MyApp.height * .02,
@@ -92,7 +95,7 @@ class ProductDetalsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Textwithfont(
-                      text: "Fruit mix pack",
+                      text: text,
                       fontSize: Fontsize.Fontsizelargeex,
                       fontWeight: FontWeight.bold,
                     ),
@@ -173,66 +176,74 @@ class ProductDetalsScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
+                          enableDrag: true,
                           backgroundColor: ColorData.whitecolor,
                           context: context,
                           shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(16)),
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                           ),
                           isScrollControlled: true,
                           builder: (context) {
-                            return Container(
-                              height: MyApp.height * .5,
-                              width: MyApp.width,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: MyApp.height * .02),
-                              decoration: BoxDecoration(
-                                  color: ColorData.shadecolor.withOpacity(.2)),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(
-                                        (MyApp.height * .006) *
-                                            (MyApp.height * .006)),
-                                    child: const CommonTextField(
-                                      maxLines: 5,
-                                      hintText: "enter your reviews..",
-                                      keyboardType: TextInputType.text,
-                                      textCapitalization:
-                                          TextCapitalization.sentences,
+                            return GestureDetector(
+                              onTap: () => FocusScope.of(context).unfocus(),
+                              child: SingleChildScrollView(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                                  ),
+                                  child: Container(
+                                    height: MyApp.height * .5,
+                                    width: MyApp.width,
+                                    padding: EdgeInsets.symmetric(vertical: MyApp.height * .02),
+                                    decoration: BoxDecoration(
+                                      color: ColorData.shadecolor.withOpacity(.2),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                            (MyApp.height * .006) * (MyApp.height * .006),
+                                          ),
+                                          child: const CommonTextField(
+                                            maxLines: 5,
+                                            hintText: "enter your reviews..",
+                                            keyboardType: TextInputType.text,
+                                            textCapitalization: TextCapitalization.sentences,
+                                          ),
+                                        ),
+                                        Obx(() => RatingStars(
+                                          value: controller.rateval.value,
+                                          maxValue: 5,
+                                          starOffColor: ColorData.shadecolor,
+                                          starSize: (MyApp.height * .007) *
+                                              (MyApp.height * .007),
+                                          onValueChanged: (value) {
+                                            controller.rateval.value = value.toDouble();
+                                          },
+                                        )),
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                            (MyApp.height * .006) * (MyApp.height * .006),
+                                          ),
+                                          child: CommonMaterialButton(
+                                            width: MyApp.width,
+                                            onPressed: () {
+                                              Navi.back();
+                                            },
+                                            color: ColorData.maincolor,
+                                            child: Textwithfont(
+                                              text: "Submit",
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: Fontsize.Fontsizemedium,
+                                              color: ColorData.whitecolor,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Obx(() => RatingStars(
-                                        value: controller.rateval.value,
-                                        maxValue: 5,
-                                        starOffColor: ColorData.shadecolor,
-                                        starSize: (MyApp.height * .007) *
-                                            (MyApp.height * .007),
-                                        onValueChanged: (value) {
-                                          print(value);
-                                          controller.rateval.value =
-                                              value.toDouble();
-                                        },
-                                      )),
-                                  Padding(
-                                    padding: EdgeInsets.all(
-                                        (MyApp.height * .006) *
-                                            (MyApp.height * .006)),
-                                    child: CommonMaterialButton(
-                                      width: MyApp.width,
-                                      onPressed: () {
-                                        Navi.back();
-                                      },
-                                      color: ColorData.maincolor,
-                                      child: Textwithfont(
-                                        text: "Submit",
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: Fontsize.Fontsizemedium,
-                                        color: ColorData.whitecolor,
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
                             );
                           },
@@ -301,7 +312,10 @@ class ProductDetalsScreen extends StatelessWidget {
                 borderRadius:
                     BorderRadius.circular(Borderradius.buttonborderradius),
                 color: ColorData.shadecolor,
-                onPressed: () {},
+                onPressed: () {
+                  Get.delete<BottomNavigationBarController>();
+                  Get.to(BottomNavigator(index: 1));
+                },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -324,7 +338,7 @@ class ProductDetalsScreen extends StatelessWidget {
               child: CommonMaterialButton(
                 onPressed: () {
                   Navi.to(ChooseAddressScreen(
-                    screen: ProductDetalsScreen(),
+                    screen: ProductDetalsScreen(image: image,text: text,),
                   ));
                 },
                 borderRadius:

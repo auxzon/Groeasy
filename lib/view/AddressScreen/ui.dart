@@ -4,7 +4,7 @@ import 'package:auxzonfoodapp/common/utils/Color/Colordata.dart';
 import 'package:auxzonfoodapp/controller/AddressScreen/AddressScreenController.dart';
 import 'package:auxzonfoodapp/controller/Bottmnavigation/BottomNavgationBarController.dart';
 import 'package:auxzonfoodapp/view/PaymentScreen/ui.dart';
-import 'package:auxzonfoodapp/view/TaskCompleteScreen/ui.dart';
+import 'package:auxzonfoodapp/view/TaskStatusScreen/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -265,7 +265,7 @@ class ChooseAddressScreen extends StatelessWidget {
                     color: ColorData.maincolor,
                     onPressed: () {
                       addressScreenController.codpayment.value
-                          ? Navi.to(const TaskCompleteScreen())
+                          ? Navi.to(const TaskStatusScreen(status: true,))
                           : Navi.to(PaymentScreen(
                               index: index,
                               screen: screen,

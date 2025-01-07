@@ -29,46 +29,116 @@ class LoginScreen extends StatelessWidget {
                 height: MyApp.height * .2,
                 width: MyApp.height * .2,
                 decoration: const BoxDecoration(
-                    image: DecorationImage(fit: BoxFit.cover,
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
                         image: AssetImage("images3/image1.png"))),
               ),
-              SizedBox(height: MyApp.height*.05,),
-              CommonTextField(
-                useUnderlineBorder: true,
-                prefixIcon: const Icon(Icons.call),
-                hintText: "enter phone number",
-                keyboardType: TextInputType.number,
-                suffixIcon: IconButton(onPressed: () {
-                  controller.showotpfieldfun();
-                }, icon: const Icon(Icons.arrow_forward_outlined)),
-              ),
               SizedBox(
-                height: MyApp.height * .02,
+                height: MyApp.height * .05,
               ),
-              Obx(() => Visibility(
-                visible: controller.showoptfield.value,
-                child: const CommonTextField(
-                  hintText: "enter otp",
-                  useUnderlineBorder: true,
-                  suffixIcon: Icon(Icons.more_horiz),
-                ),
-              ),),
-              SizedBox(
-                height: MyApp.height * .02,
+              Obx(
+                () => controller.loginwithemail.value
+                    ? Column(
+                        children: [
+                          const CommonTextField(
+                            useUnderlineBorder: true,
+                            prefixIcon: Icon(Icons.mail),
+                            hintText: "enter mail",
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          SizedBox(
+                            height: MyApp.height * .02,
+                          ),
+                          const CommonTextField(
+                            useUnderlineBorder: true,
+                            prefixIcon: Icon(Icons.lock),
+                            hintText: "enter password",
+                          ),
+                          SizedBox(
+                            height: MyApp.height * .02,
+                          ),
+                          CommonMaterialButton(
+                            width: MyApp.width * .5,
+                            color: ColorData.maincolor,
+                            borderRadius: BorderRadius.circular(
+                                Borderradius.buttonborderradius),
+                            onPressed: () {
+                              Navi.to(BottomNavigator(index: 0));
+                            },
+                            child: Textwithfont(
+                              text: "VERIFY",
+                              color: ColorData.whitecolor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: Fontsize.Fontsizemedium,
+                            ),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          CommonTextField(
+                            useUnderlineBorder: true,
+                            prefixIcon: const Icon(Icons.call),
+                            hintText: "enter phone number",
+                            keyboardType: TextInputType.number,
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.showotpfieldfun();
+                                },
+                                icon: const Icon(Icons.arrow_forward_outlined)),
+                          ),
+                          SizedBox(
+                            height: MyApp.height * .02,
+                          ),
+                          Obx(
+                            () => Visibility(
+                              visible: controller.showoptfield.value,
+                              child: const CommonTextField(
+                                hintText: "enter otp",
+                                useUnderlineBorder: true,
+                                suffixIcon: Icon(Icons.more_horiz),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MyApp.height * .02,
+                          ),
+                          CommonMaterialButton(
+                            width: MyApp.width * .5,
+                            color: ColorData.maincolor,
+                            borderRadius: BorderRadius.circular(
+                                Borderradius.buttonborderradius),
+                            onPressed: () {
+                              Navi.to(BottomNavigator(index: 0));
+                            },
+                            child: Textwithfont(
+                              text: "VERIFY",
+                              color: ColorData.whitecolor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: Fontsize.Fontsizemedium,
+                            ),
+                          ),
+                        ],
+                      ),
               ),
-              CommonMaterialButton(
-                width: MyApp.width*.5,
-                color: ColorData.maincolor,
-                borderRadius: BorderRadius.circular(Borderradius.buttonborderradius),
-                onPressed: () {
-                  Navi.to(BottomNavigator(index: 0));
-                },
-                child: Textwithfont(
-                  text: "VERIFY",
-                  color: ColorData.whitecolor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: Fontsize.Fontsizemedium,
-                ),
+              Obx(
+                () => controller.loginwithemail.value
+                    ? TextButton(
+                        onPressed: () {
+                          controller.changelogin();
+                        },
+                        child: Textwithfont(
+                          text: "login with email",
+                          color: ColorData.bluebuttoncolor,
+                        ))
+                    : TextButton(
+                        onPressed: () {
+                          controller.changelogin();
+                        },
+                        child: Textwithfont(
+                          text: "login with phone-number",
+                          color: ColorData.bluebuttoncolor,
+                        )),
               )
             ],
           ),

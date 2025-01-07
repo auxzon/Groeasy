@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class TaskCompleteScreen extends StatelessWidget {
-  const TaskCompleteScreen({super.key});
+class TaskStatusScreen extends StatelessWidget {
+  const TaskStatusScreen({super.key,required this.status});
 
+  final bool status;
   @override
   Widget build(BuildContext context) {
-    TaskCompleteScreenController taskCompleteScreenController = Get.put(TaskCompleteScreenController());
+    TaskStatusScreenController taskCompleteScreenController = Get.put(TaskStatusScreenController());
     return Commonscaffold(
       body: Center(
-        child: Lottie.asset("images3/paymentsucess.json"),
+        child: Lottie.asset(status?"images3/paymentsucess.json":"images3/PaymentFailed.json"),
       ),
     );
   }

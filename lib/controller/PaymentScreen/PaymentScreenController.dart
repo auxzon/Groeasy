@@ -1,5 +1,6 @@
 import 'package:auxzonfoodapp/controller/Bottmnavigation/BottomNavgationBarController.dart';
 import 'package:auxzonfoodapp/view/BottomSheet/BottomSheet.dart';
+import 'package:auxzonfoodapp/view/TaskStatusScreen/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -70,7 +71,7 @@ class PaymentController extends GetxController {
           Get.delete<PaymentController>();
           Get.delete<BottomNavigationBarController>();
           Get.delete<AddressScreenController>();
-          Navi.to(BottomNavigator(index: 0),
+          Navi.to(TaskStatusScreen(status: true),
               transition: Transition.leftToRightWithFade);
         } else {
           result.value = "Payment Failed - Status: ${status.value}, Error: ${error.value}";

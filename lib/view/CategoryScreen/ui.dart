@@ -16,7 +16,22 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    List images = [
+      "https://img.freepik.com/free-photo/raw-meat-table_23-2150857912.jpg?t=st=1735558226~exp=1735561826~hmac=6240bc8c2fff05ba5882b276c6a379d1f518696c7955a2af8c61b3eb431f2975&w=1380",
+      "https://images.unsplash.com/photo-1650265929240-fbf163e0d003?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://media.istockphoto.com/id/878447520/photo/vet-with-dog-and-cat.jpg?s=2048x2048&w=is&k=20&c=qaGz_6S8JtzHpamFne3LI1SiyS4I3LPxJ1B9pWeiIv4=",
+      "https://images.unsplash.com/photo-1699303480277-ddcd4f05aacd?q=80&w=1990&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1671379041175-782d15092945?q=80&w=2040&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1661892402083-4a4a0adcc44a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ];
+    List Categories = [
+      "Meat Products",
+      "Dairy products",
+      "veterinary",
+      "Vegetables",
+      "Fruits",
+      "Fish Products",
+    ];
     return Container(
       color: ColorData.whitecolor,
       child: Column(
@@ -64,14 +79,14 @@ class CategoryScreen extends StatelessWidget {
                   child: ListView.separated(
                     padding: EdgeInsets.symmetric(vertical: MyApp.height * .02),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: Categories.length,
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
-                        Navi.to(PopularSeeAll(title:"Frozen Items",index: 2,));
+                        Navi.to(PopularSeeAll(title:Categories[index],index: 2,));
                       },
-                      child: const CategoryCard(
-                        title: "Frozen Items",
-                        imageUrl: "https://images.unsplash.com/photo-1556471013-0001958d2f12?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      child: CategoryCard(
+                        title: Categories[index],
+                        imageUrl: images[index],
                       ),
                     ),
                     separatorBuilder: (context, index) => const SizedBox(width: 16),
@@ -84,17 +99,17 @@ class CategoryScreen extends StatelessWidget {
                 SizedBox(
                   height: MyApp.height * .22,
                   child: ListView.separated(
+                    reverse: true,
                     padding: EdgeInsets.symmetric(vertical: MyApp.height * .02),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: Categories.length,
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
                         Navi.to(PopularSeeAll(title:' Bread & Bakery',index: 2,));
                       },
-                      child: const CategoryCard(
-                        title: ' Bread & Bakery',
-                        imageUrl:
-                        'https://images.unsplash.com/photo-1598679253544-2c97992403ea?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      child: CategoryCard(
+                        title: Categories[index],
+                        imageUrl: images[index],
                       ),
                     ),
                     separatorBuilder: (context, index) => const SizedBox(width: 16),
@@ -113,7 +128,7 @@ class CategoryScreen extends StatelessWidget {
                     crossAxisSpacing: MyApp.width * 0.06,
                     childAspectRatio:1.4,
                   ),
-                  itemCount: 6,
+                  itemCount: Categories.length,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
                       if (kDebugMode) {
@@ -121,10 +136,9 @@ class CategoryScreen extends StatelessWidget {
                         Navi.to(PopularSeeAll(title:'Other Categories',index: 2,));
                       }
                     },
-                    child: const CategoryCard(
-                      title: 'Other Categories',
-                      imageUrl:
-                      'https://images.unsplash.com/photo-1485921325833-c519f76c4927?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    child: CategoryCard(
+                      title: Categories[index],
+                      imageUrl: images[index],
                     ),
                   ),
                 ),

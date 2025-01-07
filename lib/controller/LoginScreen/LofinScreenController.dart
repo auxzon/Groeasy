@@ -7,4 +7,9 @@ class LoninScreenController extends GetxController
   showotpfieldfun(){
     showoptfield.value = !showoptfield.value;
   }
+
+  var loginwithemail = false.obs;
+  changelogin(){
+    loginwithemail.value=!loginwithemail.value;
+  }
 }

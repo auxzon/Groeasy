@@ -151,35 +151,35 @@ class PersonalInfoScreen extends StatelessWidget {
                             SizedBox(
                               height: MyApp.height * .01,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Textwithfont(
-                                      text: "Subscriptions",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: Fontsize.Fontsizelarge,
-                                    ),
-                                    Textwithfont(
-                                      text: "Active",
-                                      fontWeight: FontWeight.bold,
-                                      color: ColorData.greebuttoncolor,
-                                      fontSize: Fontsize.Fontsizelarge,
-                                    ),
-                                  ],
-                                ),
-                                Textwithfont(
-                                  text: "Milk | NewsPaper ",
-                                  fontSize: Fontsize.Fontsizemedium,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: MyApp.height * .01,
-                            ),
-                            const Divider(),
+                            // Column(
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: [
+                            //     Row(
+                            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //       children: [
+                            //         Textwithfont(
+                            //           text: "Subscriptions",
+                            //           fontWeight: FontWeight.bold,
+                            //           fontSize: Fontsize.Fontsizelarge,
+                            //         ),
+                            //         Textwithfont(
+                            //           text: "Active",
+                            //           fontWeight: FontWeight.bold,
+                            //           color: ColorData.greebuttoncolor,
+                            //           fontSize: Fontsize.Fontsizelarge,
+                            //         ),
+                            //       ],
+                            //     ),
+                            //     Textwithfont(
+                            //       text: "Milk | NewsPaper ",
+                            //       fontSize: Fontsize.Fontsizemedium,
+                            //     ),
+                            //   ],
+                            // ),
+                            // SizedBox(
+                            //   height: MyApp.height * .01,
+                            // ),
+                            // const Divider(),
                             SizedBox(
                               height: MyApp.height * .01,
                             ),

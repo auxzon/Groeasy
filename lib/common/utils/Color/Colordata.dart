@@ -11,4 +11,5 @@ class ColorData {
   static const shadecolor = Color(0xFF8F8F8F);
   static const cancelbuttoncolor = Color(0xFFC5061E);
   static const greebuttoncolor = Color(0xFF109B31);
+  static const bluebuttoncolor = Color(0xFF002A81);
 }
