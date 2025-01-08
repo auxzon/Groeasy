@@ -85,7 +85,7 @@ class CartScreen extends StatelessWidget {
             child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: MyApp.width * 0.04),
               physics: const BouncingScrollPhysics(),
-              itemCount: groceriesimg.length,
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return CartItemCard(
                   height: MyApp.height,

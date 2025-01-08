@@ -1,15 +1,15 @@
 import 'package:auxzonfoodapp/common/Navigation/navigation.dart';
-import 'package:auxzonfoodapp/common/commonscaffold/commonScaffold.dart';
 import 'package:auxzonfoodapp/common/text/textdata.dart';
-import 'package:auxzonfoodapp/common/utils/BorderRadius/borderradius.dart';
 import 'package:auxzonfoodapp/common/utils/Color/Colordata.dart';
 import 'package:auxzonfoodapp/common/utils/fontsize/fontsize.dart';
 import 'package:auxzonfoodapp/view/PopularSeeAll/ui.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:auxzonfoodapp/widgets/Category/CategoryAppbar/appbar.dart';
+import 'package:auxzonfoodapp/widgets/Category/CategorySearchbar/categorysearchbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import '../../main.dart';
+import '../../widgets/Category/CategoryCard/categorycard.dart';
+import '../../widgets/Category/Sectionheader/sectionheader.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -36,41 +36,14 @@ class CategoryScreen extends StatelessWidget {
       color: ColorData.whitecolor,
       child: Column(
         children: [
-          AppBar(
-            centerTitle: true,
-            automaticallyImplyLeading: false,
-            forceMaterialTransparency: true,
-            title: Textwithfont(
-              text: "Category",
-              fontSize: Fontsize.Fontsizelargeex,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          CatAppbar(title: "Category"),
           // Search Bar
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search categories...',
-                prefixIcon: const Icon(Icons.search, color: ColorData.seconderycolor),
-                filled: true,
-                fillColor: const Color(0xFFFFFFFF),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(
-                    color: Color(0xFFA8A8A8),
-                    width: 1,
-                  ),
-                ),
-                contentPadding:
-                const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-              ),
-            ),
+          Categorysearchbar(
+            title: 'Search categories...',
           ),
           Expanded(
             child: ListView(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               children: [
                 // Hot Deals Section
                 const SectionHeader(title: 'Hot Deals'),
@@ -80,16 +53,18 @@ class CategoryScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: MyApp.height * .02),
                     scrollDirection: Axis.horizontal,
                     itemCount: Categories.length,
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {
-                        Navi.to(PopularSeeAll(title:Categories[index],index: 2,));
+                    itemBuilder: (context, index) => CategoryCard(
+                      tapfun: () {
+                        Navi.to(PopularSeeAll(
+                          title: Categories[index],
+                          index: 2,
+                        ));
                       },
-                      child: CategoryCard(
-                        title: Categories[index],
-                        imageUrl: images[index],
-                      ),
+                      title: Categories[index],
+                      imageUrl: images[index],
                     ),
-                    separatorBuilder: (context, index) => const SizedBox(width: 16),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 16),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -103,16 +78,18 @@ class CategoryScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: MyApp.height * .02),
                     scrollDirection: Axis.horizontal,
                     itemCount: Categories.length,
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {
-                        Navi.to(PopularSeeAll(title:' Bread & Bakery',index: 2,));
+                    itemBuilder: (context, index) => CategoryCard(
+                      tapfun: () {
+                        Navi.to(PopularSeeAll(
+                          title: ' Bread & Bakery',
+                          index: 2,
+                        ));
                       },
-                      child: CategoryCard(
-                        title: Categories[index],
-                        imageUrl: images[index],
-                      ),
+                      title: Categories[index],
+                      imageUrl: images[index],
                     ),
-                    separatorBuilder: (context, index) => const SizedBox(width: 16),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 16),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -126,101 +103,27 @@ class CategoryScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     mainAxisSpacing: MyApp.height * 0.03,
                     crossAxisSpacing: MyApp.width * 0.06,
-                    childAspectRatio:1.4,
+                    childAspectRatio: 1.4,
                   ),
                   itemCount: Categories.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
+                  itemBuilder: (context, index) => CategoryCard(
+                    tapfun: () {
                       if (kDebugMode) {
                         print('Clicked on Other Category ${index + 1}');
-                        Navi.to(PopularSeeAll(title:'Other Categories',index: 2,));
+                        Navi.to(PopularSeeAll(
+                          title: 'Other Categories',
+                          index: 2,
+                        ));
                       }
                     },
-                    child: CategoryCard(
-                      title: Categories[index],
-                      imageUrl: images[index],
-                    ),
+                    title: Categories[index],
+                    imageUrl: images[index],
                   ),
                 ),
               ],
             ),
           ),
           SizedBox(height: MyApp.height * .02),
-        ],
-      ),
-    );
-  }
-}
-
-class SectionHeader extends StatelessWidget {
-  final String title;
-
-  const SectionHeader({required this.title, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: Textwithfont(
-        text: title,
-        fontSize: Fontsize.Fontsizelarge,
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatelessWidget {
-  final String title;
-  final String imageUrl;
-
-  const CategoryCard({required this.title, required this.imageUrl, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MyApp.width * .4,
-      height: MyApp.height * .22,
-      decoration: BoxDecoration(
-        color: ColorData.whitecolor,
-        boxShadow: [
-          BoxShadow(color: ColorData.shadecolor,blurRadius: 2,offset: Offset(1, 0))
-        ],borderRadius: BorderRadius.circular(Borderradius.containerborderradius)
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(Borderradius.containerborderradius)),
-            child: CachedNetworkImage(
-              imageUrl: imageUrl,
-              width: double.infinity,
-              height: MyApp.height * 0.12,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              errorWidget: (context, url, error) => Container(
-                color: Colors.grey[300],
-                child: const Icon(
-                  Icons.broken_image,
-                  size: 50,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Textwithfont(
-              textoverflow: TextOverflow.ellipsis,
-              maxliness: 1,
-              text: title,
-              textAlign: TextAlign.center,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
         ],
       ),
     );

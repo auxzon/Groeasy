@@ -1,4 +1,5 @@
 import 'package:auxzonfoodapp/common/commonscaffold/commonScaffold.dart';
+import 'package:auxzonfoodapp/widgets/PopularSeeAll/PopularSeeAllCard/popularseeall.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,11 @@ import '../BottomSheet/BottomSheet.dart';
 import '../ProducDetailsScreen/ui.dart';
 
 class PopularSeeAll extends StatelessWidget {
-  PopularSeeAll({super.key, this.title, this.index,});
+  PopularSeeAll({
+    super.key,
+    this.title,
+    this.index,
+  });
 
   String? title;
   int? index;
@@ -87,7 +92,7 @@ class PopularSeeAll extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Get.delete<BottomNavigationBarController>();
-            Navi.to(BottomNavigator(index: index??0),
+            Navi.to(BottomNavigator(index: index ?? 0),
                 transition: Transition.leftToRightWithFade);
           },
           icon: const Icon(Icons.arrow_back_ios),
@@ -95,15 +100,15 @@ class PopularSeeAll extends StatelessWidget {
         automaticallyImplyLeading: false,
         forceMaterialTransparency: true,
         title: Textwithfont(
-          text: title??"Popular Groceries",
+          text: title ?? "Popular Groceries",
           fontSize: Fontsize.Fontsizelargeex,
           fontWeight: FontWeight.bold,
         ),
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(horizontal:  (MyApp.height * .006) *
-            (MyApp.height * .006)),
+        padding: EdgeInsets.symmetric(
+            horizontal: (MyApp.height * .006) * (MyApp.height * .006)),
         children: [
           /// filter button
           Container(
@@ -115,19 +120,24 @@ class PopularSeeAll extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                _buildFilterButton('Lunch', MyApp.height, MyApp.width, icon: Icons.arrow_drop_down),
+                _buildFilterButton('Lunch', MyApp.height, MyApp.width,
+                    icon: Icons.arrow_drop_down),
                 SizedBox(width: MyApp.width * 0.02),
-                _buildFilterButton('Nearest', MyApp.height, MyApp.width, isSelected: true),
-                SizedBox(width:MyApp. width * 0.02),
-                _buildFilterButton('Great Offers', MyApp.height, MyApp.width, isSelected: true),
+                _buildFilterButton('Nearest', MyApp.height, MyApp.width,
+                    isSelected: true),
                 SizedBox(width: MyApp.width * 0.02),
-                _buildFilterButton('Ratings 4+', MyApp.height, MyApp.width, icon: Icons.arrow_drop_down),
+                _buildFilterButton('Great Offers', MyApp.height, MyApp.width,
+                    isSelected: true),
+                SizedBox(width: MyApp.width * 0.02),
+                _buildFilterButton('Ratings 4+', MyApp.height, MyApp.width,
+                    icon: Icons.arrow_drop_down),
               ],
             ),
           ),
           SizedBox(
             height: MyApp.height * .02,
           ),
+
           ///grid category
           GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
@@ -137,171 +147,41 @@ class PopularSeeAll extends StatelessWidget {
               crossAxisCount: 2,
               mainAxisSpacing: MyApp.height * 0.03,
               crossAxisSpacing: MyApp.width * 0.06,
-              childAspectRatio: 0.65,
+              childAspectRatio: (MyApp.width / MyApp.height) * 1.2,
             ),
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () {
-                Navi.to(ProductDetalsScreen(image: groceriesimg[index],text: groceries[index],));
+            itemBuilder: (context, index) => Popularseeall(
+              image: groceriesimg[index],
+              title: groceries[index],
+              category: 'Apple, banana , Orange , Tomato ',
+              rating: 4.8,
+              time: "15 min",
+              deliverytype: index.isEven ? true : false,
+              tapfun: () {
+                Navi.to(ProductDetalsScreen(
+                  image: groceriesimg[index],
+                  toscreen: PopularSeeAll(),
+                  text: groceries[index],
+                ));
               },
-              child: Container(
-                width: MyApp.width,
-                height: MyApp.height*.4,
-                decoration: BoxDecoration(
-                    color: ColorData.whitecolor,
-                    borderRadius: BorderRadius.circular(Borderradius.containerborderradius),
-                    boxShadow: [
-                      BoxShadow(color: ColorData.seconderycolor.withOpacity(.4),blurRadius: 5,offset: Offset(0, 1))
-                    ]
-                ),
-                child: Stack(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: MyApp.width,
-                          height: MyApp.height*.2,
-                          decoration: BoxDecoration(
-                            color: ColorData.whitecolor,
-                            borderRadius: BorderRadius.circular(MyApp.height * 0.009),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 5,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(MyApp.height * 0.009),
-                              topRight: Radius.circular(MyApp.height * 0.009),
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: groceriesimg[index],
-                              height: MyApp.height * 0.2,
-                              width: MyApp.width,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(Innerpadding.CardInnerpadding),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Textwithfont(
-                                text: groceries[index],
-                                maxliness: 1,
-                                textoverflow: TextOverflow.ellipsis,
-                                fontSize: MyApp.height * 0.018,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              SizedBox(height: MyApp.height * 0.005),
-                              Textwithfont(
-                                text: 'Apple, banana , Orange , Tomato ',
-                                fontSize: MyApp.height * 0.014,
-                                color: ColorData.shadecolor,
-                                maxliness: 1,
-                                textoverflow: TextOverflow.ellipsis,
-                              ),
-                              SizedBox(height: MyApp.height * 0.01),
-                              Row(
-                                children: [
-                                  Icon(Icons.star, color: const Color(0xFFFFDD00), size: MyApp.height * 0.016),
-                                  SizedBox(width: MyApp.width * 0.005),
-                                  Textwithfont(
-                                    text: '4.8',
-                                    fontSize: MyApp.height * 0.014,
-                                    fontWeight: FontWeight.bold,
-                                    maxliness: 1,
-                                    textoverflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: MyApp.height * 0.01),
-                              Row(
-                                children: [
-                                  Icon(Icons.location_on, color: ColorData.greebuttoncolor, size: MyApp.height * 0.016),
-                                  SizedBox(width: MyApp.width * 0.005),
-                                  Flexible(
-                                    child: Textwithfont(
-                                      text: '212, Ring Road, Surat, Gujarat',
-                                      fontSize: MyApp.height * 0.014,
-                                      color: Colors.grey[600],
-                                      maxliness: 1,
-                                      textoverflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: MyApp.height * 0.005),
-                              Row(
-                                children: [
-                                  Textwithfont(
-                                    text: '15 min',
-                                    fontSize: MyApp.height * 0.014,
-                                    color: ColorData.shadecolor,
-                                  ),
-                                  Textwithfont(
-                                    text: ' | ',
-                                    fontSize: MyApp.height * 0.014,
-                                    color:ColorData.shadecolor,
-                                  ),
-                                  Textwithfont(
-                                    text: '1.5km',
-                                    fontSize: MyApp.height * 0.014,
-                                    color:ColorData.shadecolor,
-                                  ),
-                                  Textwithfont(
-                                    text: ' | ',
-                                    fontSize: MyApp.height * 0.014,
-                                    color:ColorData.shadecolor,
-                                  ),
-                                  Textwithfont(
-                                    text: 'Free Delivery',
-                                    fontSize: MyApp.height * 0.014,
-                                    color:ColorData.greebuttoncolor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    Positioned(
-                      top: MyApp.height*.02,
-                      right: MyApp.width*.02,
-                      child: CircleAvatar(
-                        backgroundColor: ColorData.whitecolor,
-                        radius: kDefaultFontSize,
-                        child: Icon(
-                          Icons.favorite_border,
-                          size: kDefaultFontSize,
-                          color: ColorData.seconderycolor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ),
           ),
         ],
       ),
     );
   }
+
   Widget _buildFilterButton(String label, double height, double width,
       {bool isSelected = false, IconData? icon}) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.04,),
+      padding: EdgeInsets.symmetric(
+        horizontal: width * 0.04,
+      ),
       decoration: BoxDecoration(
-        color: isSelected ? ColorData.maincolor: ColorData.whitecolor,
+        color: isSelected ? ColorData.maincolor : ColorData.whitecolor,
         borderRadius: BorderRadius.circular(Borderradius.buttonborderradius),
-        border: Border.all(color: ColorData.maincolor,),
+        border: Border.all(
+          color: ColorData.maincolor,
+        ),
       ),
       child: Row(
         children: [

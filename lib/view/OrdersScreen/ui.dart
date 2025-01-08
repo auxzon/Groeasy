@@ -19,14 +19,14 @@ class OrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, // Number of tabs
+      length: 2,
       child: Commonscaffold(
         appBar: AppBar(
           centerTitle: true,
           forceMaterialTransparency: true,
           automaticallyImplyLeading: false,
           title: Textwithfont(
-            text: "Your OrdersScreen",
+            text: "Order Screen",
             fontSize: Fontsize.Fontsizelargeex,
             fontWeight: FontWeight.bold,
           ),

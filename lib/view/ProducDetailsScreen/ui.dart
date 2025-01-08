@@ -19,10 +19,11 @@ import 'package:get/get.dart';
 import '../AddressScreen/ui.dart';
 
 class ProductDetalsScreen extends StatelessWidget {
-  const ProductDetalsScreen({super.key, required this.image, required this.text});
+  const ProductDetalsScreen({super.key, required this.image, required this.text,required this.toscreen});
 
   final String image;
   final String text;
+  final Widget toscreen;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,8 @@ class ProductDetalsScreen extends StatelessWidget {
                           icon:
                               const Icon(Icons.arrow_back, color: Colors.black),
                           onPressed: () {
-                            Navi.to(BottomNavigator(index: 3),
+                            Navi.to(toscreen,
+                            // Navi.to(BottomNavigator(index: 3),
                                 transition: Transition.leftToRightWithFade);
                           },
                         ),
@@ -338,7 +340,7 @@ class ProductDetalsScreen extends StatelessWidget {
               child: CommonMaterialButton(
                 onPressed: () {
                   Navi.to(ChooseAddressScreen(
-                    screen: ProductDetalsScreen(image: image,text: text,),
+                    screen: ProductDetalsScreen(image: image,text: text,toscreen: toscreen,),
                   ));
                 },
                 borderRadius:
