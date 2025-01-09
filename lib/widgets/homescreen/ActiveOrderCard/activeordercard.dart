@@ -1,3 +1,4 @@
+import 'package:auxzonfoodapp/common/utils/fontsize/fontsize.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class Activeordercard extends StatelessWidget {
       radius: Radius.circular(Borderradius.containerborderradius),
       dashPattern: const [6, 3],
       child: Container(
-        height: MyApp.height * 0.3,
+        height: MyApp.height * 0.35,
         width: MyApp.width,
         padding: EdgeInsets.symmetric(
           horizontal: MyApp.width * .02,
@@ -78,7 +79,7 @@ class Activeordercard extends StatelessWidget {
                     ),
                     Padding(
                       padding:
-                      EdgeInsets.symmetric(vertical: MyApp.height * .02),
+                          EdgeInsets.symmetric(vertical: MyApp.height * .02),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
@@ -104,21 +105,38 @@ class Activeordercard extends StatelessWidget {
                           text: status == 1
                               ? "Active"
                               : status == 2
-                              ? "Inactive"
-                              : status == 3
-                              ? "pending"
-                              : "",
+                                  ? "Inactive"
+                                  : status == 3
+                                      ? "pending"
+                                      : "",
                           color: status == 1
                               ? ColorData.greebuttoncolor
                               : status == 2
-                          ?ColorData.cancelbuttoncolor
-                              :status ==3
-                          ?ColorData.orangecolor
-                          :ColorData.maincolor,
+                                  ? ColorData.cancelbuttoncolor
+                                  : status == 3
+                                      ? ColorData.orangecolor
+                                      : ColorData.maincolor,
                           fontWeight: FontWeight.bold,
                         ),
                       ],
                     ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Textwithfont(
+                          text: "pin : ",
+                          fontWeight: FontWeight.bold,
+                          color: ColorData.shadecolor,
+                          fontSize: Fontsize.Fontsizemedium,
+                        ),
+                        Textwithfont(
+                          text: "123456",
+                          fontWeight: FontWeight.bold,
+                          color: ColorData.seconderycolor,
+                          fontSize: Fontsize.Fontsizelarge,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ],
